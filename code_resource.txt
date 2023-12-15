@@ -1,0 +1,21 @@
+    
+    source = crosstabA.reset_index().melt(id_vars='salary', var_name='Left')
+    st.write(source)
+    chart=alt.Chart(source).mark_bar(strokeWidth=100).encode(
+        x=alt.X('Left:N', title="", scale=alt.Scale(paddingOuter=0.5)),
+        y='value:Q',
+        color='Left:N',
+        column=alt.Column('salary:N', title="", spacing =0),
+    ).properties( width = 200, height = 300)
+
+    st.altair_chart(chart)
+    
+    #Using matplotlib
+    fig, ax = plt.subplots()
+    crosstabA.plot(kind='bar', ax=ax)
+    ax.set_xlabel('Salary')
+    ax.set_ylabel('Count')
+    ax.set_title('Bar Plot of Salary vs Left')
+    st.pyplot(fig)
+
+    
